@@ -12,7 +12,8 @@ const BASICS = {
 };
 
 const FUNCTIONS = {
-  'functions/classic': [[7], [20]],
+  'functions/classic': "W1s3XSxbMjBdXQ==",
+  'functions/closure': "W1siV2VsbCBkb25lLCB5b3UhIl1d",
 };
 
 const TEST_RESULTS = {

@@ -15,3 +15,9 @@ const thisIsAnAnonFunction = function(...args) {
 
 const sum = thisIsAnAnonFunction(3, 4, 5, 6);
 console.log(sum);
+
+function getFiveOrSomethingElse(somethingElse = 5) {
+  return somethingElse;
+}
+
+console.log(getFiveOrSomethingElse());
