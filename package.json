@@ -1,0 +1,29 @@
+{
+  "name": "intro-to",
+  "version": "1.0.0",
+  "description": "Exercises for intro to JS course",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/500tech/intro-to-js.git"
+  },
+  "author": "500tech",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/500tech/intro-to-js/issues"
+  },
+  "homepage": "https://github.com/500tech/intro-to-js#readme",
+  "devDependencies": {},
+  "dependencies": {
+    "base-64": "^0.1.0",
+    "chalk": "^2.4.2",
+    "enquirer": "^2.3.0",
+    "event-to-promise": "^0.8.0",
+    "globby": "^9.0.0",
+    "lodash": "^4.17.11",
+    "nodemon": "^1.18.9"
+  }
+}
