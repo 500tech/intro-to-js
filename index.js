@@ -14,6 +14,10 @@ function spawnNodemon(file, ...args) {
   });
 }
 
+function spawnVSC(file) {
+  return spawn('code', [file]);
+}
+
 async function chooseModule(modules) {
   const questions = [
     {
@@ -69,24 +73,30 @@ async function startLesson() {
   };
 }
 
-if (cluster.isMaster) {
-  async function main() {
-    const selector = cluster.fork();
-    const { lesson } = await eventToPromise(selector, 'message');
-    if (lesson) {
-      const app = spawnNodemon(
-        lesson.isTest ? 'test.js' : 'lesson.js',
-        lesson.path
-      );
-      await eventToPromise(process, 'SIGINT');
-      app.kill();
-      return main();
-    }
+async function master() {
+  const selector = cluster.fork();
+  const { lesson } = await eventToPromise(selector, 'message');
+  if (lesson) {
+    spawnVSC(`${LESSONS_DIR}${lesson.path}${lesson.isTest ? '.test' : ''}.js`);
+    const app = spawnNodemon(
+      lesson.isTest ? 'test.js' : 'lesson.js',
+      lesson.path
+    );
+    await eventToPromise(process, 'SIGINT');
+    app.kill();
+    return master();
   }
-  main();
-} else {
-  startLesson()
+}
+
+function child() {
+  return startLesson()
     .then(lesson => process.send({ lesson }))
     .catch(() => process.send({ lesson: null }))
     .then(() => process.exit(0));
+}
+
+if (cluster.isMaster) {
+  master();
+} else {
+  child();
 }
