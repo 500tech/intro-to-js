@@ -3,6 +3,7 @@ const { decode } = require('base-64');
 const { isEqual } = require('lodash');
 
 const TEST_RESULTS = {
+  'basic/flow-control': [['long'], [4], [5], [6], [7], [8], [9], [10], [11]],
   'basic/logging':
     'W1siV2VsY29tZSB0byBJbnRybyB0byBKUyEiXSxbMzE1MzYwMDAsInNlY29uZHMgaW4gYSB5ZWFyIl1d',
   'basic/operations':
