@@ -29,6 +29,13 @@ boolean -> number
 any -> string?
 */
 
+// We can explicitly cast into ints and floats:
+const two = parseInt('2');
+console.log(two === 2);
+
+// Math is a global utility:
+console.log(Math.floor(5.4));
+
 // String methods
 // RegEx syntax: </expression/flags>
 // RegEx example: /\s/g (all whitespace)

@@ -17,9 +17,14 @@ const FUNCTIONS = {
   'functions/closure': 'W1siV2VsbCBkb25lLCB5b3UhIl1d',
 };
 
+const OBJECTS = {
+  'objects/arrays': 'W1s0Mzk2OF1d',
+};
+
 const TEST_RESULTS = {
   ...BASICS,
   ...FUNCTIONS,
+  ...OBJECTS,
 };
 
 function test(testName) {
@@ -31,9 +36,10 @@ function test(testName) {
   };
   require(`./lessons/${testName}.test`);
   console.log = log;
-  const expected = Array.isArray(TEST_RESULTS[testName]) || !TEST_RESULTS[testName]
-    ? TEST_RESULTS[testName]
-    : JSON.parse(decode(TEST_RESULTS[testName]));
+  const expected =
+    Array.isArray(TEST_RESULTS[testName]) || !TEST_RESULTS[testName]
+      ? TEST_RESULTS[testName]
+      : JSON.parse(decode(TEST_RESULTS[testName]));
   const result = isEqual(prints, expected)
     ? chalk.greenBright("YEAH! you'r awesome!")
     : chalk.red('NOPE try again :)');
