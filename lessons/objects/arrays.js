@@ -42,3 +42,15 @@ console.log(countOfEvenNumbers);
 
 const runningAverage = arr.reduce((currentAvg, n) => (currentAvg + n) / 2);
 console.log(runningAverage);
+
+/**
+ * Shallow copying:
+ * .slice(startIndex=0, length=.length) returns a new sub-array.
+ */
+
+const shallow = arr.slice();
+console.log(arr, shallow, arr === shallow);
+
+// Or, you can use the spread (...) operator
+const spread = [...arr];
+console.log(arr, spread, arr === spread);

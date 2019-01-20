@@ -13,6 +13,11 @@ for (let i = 0; i < value; i++) {
   console.log('bar');
 }
 
+let x = 3;
+while (x) {
+  console.log(x--);
+}
+
 const tri = value > 4 ? 'More than four' : 'Might be equal to four';
 
 console.log(tri);

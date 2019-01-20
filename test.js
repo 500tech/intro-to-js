@@ -1,6 +1,6 @@
 const chalk = require('chalk');
 const { decode } = require('base-64');
-const { isEqual } = require('lodash');
+const { isEqual, get } = require('lodash');
 
 const BASICS = {
   'basic/flow-control':
@@ -19,6 +19,24 @@ const FUNCTIONS = {
 
 const OBJECTS = {
   'objects/arrays': 'W1s0Mzk2OF1d',
+  'objects/plain': 'W1t0cnVlXSxbdHJ1ZV0sW3RydWVdLFtmYWxzZSx0cnVlXV0=',
+  'objects/destruct': {
+    input: {
+      id: 101,
+      email: 'jack@dev.com',
+      personalInfo: {
+        name: 'Jack',
+        address: {
+          line1: 'westwish st',
+          line2: 'washmasher',
+          city: 'wallas',
+          state: 'WX',
+        },
+      },
+    },
+    output:
+      'W1siVXNlciAxMDEgKGphY2tAZGV2LmNvbSlcbkphY2tcbndlc3R3aXNoIHN0ICh3YXNobWFzaGVyKSxcbndhbGxhcyxcbldYIl1d',
+  },
 };
 
 const TEST_RESULTS = {
@@ -34,12 +52,16 @@ function test(testName) {
     log(...args);
     prints.push(args);
   };
-  require(`./lessons/${testName}.test`);
+  const mod = require(`./lessons/${testName}.test`);
+  if (mod) {
+    mod(get(TEST_RESULTS, `${testName}.input`));
+  }
   console.log = log;
+  const output = get(TEST_RESULTS, `${testName}.input`)
+    ? get(TEST_RESULTS, `${testName}.output`)
+    : TEST_RESULTS[testName];
   const expected =
-    Array.isArray(TEST_RESULTS[testName]) || !TEST_RESULTS[testName]
-      ? TEST_RESULTS[testName]
-      : JSON.parse(decode(TEST_RESULTS[testName]));
+    Array.isArray(output) || !output ? output : JSON.parse(decode(output));
   const result = isEqual(prints, expected)
     ? chalk.greenBright("YEAH! you'r awesome!")
     : chalk.red('NOPE try again :)');
