@@ -46,14 +46,22 @@ const CLASSES = {
     'W1siSGVsbG8sIEkgYW0gSmFjb2IgSmFjb2Jzb24uIl0sWyJIaSwgSSBhbSBNYXJrIE1hcmthdmlhbi4iXV0=',
 };
 
+const ASYNC = {
+  'async/basic': {
+    input: true,
+    output: 'W1tbMywxMyw3OV1dXQ==',
+  },
+};
+
 const TEST_RESULTS = {
   ...BASICS,
   ...FUNCTIONS,
   ...OBJECTS,
   ...CLASSES,
+  ...ASYNC,
 };
 
-function test(testName) {
+async function test(testName) {
   const log = console.log;
   const prints = [];
   console.log = function(...args) {
@@ -62,11 +70,13 @@ function test(testName) {
   };
   const mod = require(`./lessons/${testName}.test`);
   if (typeof mod === 'function') {
-    mod(get(TEST_RESULTS, `${testName}.input`));
+    try {
+      await mod(get(TEST_RESULTS, `${testName}.input`));
+    } catch {}
   }
   console.log = log;
   const output = get(TEST_RESULTS, `${testName}.input`)
-    ? get(TEST_RESULTS, `${testName}.output`)
+    ? get(TEST_RESULTS, `${testName}.output`, [])
     : TEST_RESULTS[testName];
   const expected =
     Array.isArray(output) || !output ? output : JSON.parse(decode(output));
