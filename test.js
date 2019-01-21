@@ -42,6 +42,8 @@ const OBJECTS = {
 const CLASSES = {
   'classes/syntax': 'W1siTXIuIEZvb2JhciJdLFsxNDQxXSxbZmFsc2VdLFt0cnVlXV0=',
   'classes/extend': 'W1t0cnVlXSxbZmFsc2VdXQ==',
+  'classes/context':
+    'W1siSGVsbG8sIEkgYW0gSmFjb2IgSmFjb2Jzb24uIl0sWyJIaSwgSSBhbSBNYXJrIE1hcmthdmlhbi4iXV0=',
 };
 
 const TEST_RESULTS = {
