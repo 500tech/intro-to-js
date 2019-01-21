@@ -39,10 +39,15 @@ const OBJECTS = {
   },
 };
 
+const CLASSES = {
+  'classes/syntax': 'W1siTXIuIEZvb2JhciJdLFsxNDQxXSxbZmFsc2VdLFt0cnVlXV0=',
+};
+
 const TEST_RESULTS = {
   ...BASICS,
   ...FUNCTIONS,
   ...OBJECTS,
+  ...CLASSES,
 };
 
 function test(testName) {
@@ -53,7 +58,7 @@ function test(testName) {
     prints.push(args);
   };
   const mod = require(`./lessons/${testName}.test`);
-  if (mod) {
+  if (typeof mod === 'function') {
     mod(get(TEST_RESULTS, `${testName}.input`));
   }
   console.log = log;
