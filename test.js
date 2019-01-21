@@ -51,6 +51,10 @@ const ASYNC = {
     input: true,
     output: 'W1tbMywxMyw3OV1dXQ==',
   },
+  'async/promises': {
+    input: true,
+    output: 'W1s3XV0=',
+  },
 };
 
 const TEST_RESULTS = {
