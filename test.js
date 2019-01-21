@@ -41,6 +41,7 @@ const OBJECTS = {
 
 const CLASSES = {
   'classes/syntax': 'W1siTXIuIEZvb2JhciJdLFsxNDQxXSxbZmFsc2VdLFt0cnVlXV0=',
+  'classes/extend': 'W1t0cnVlXSxbZmFsc2VdXQ==',
 };
 
 const TEST_RESULTS = {
