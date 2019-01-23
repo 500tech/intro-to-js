@@ -19,10 +19,10 @@
  *      - Zika
  *
  * Implement this hierarchy. Implement the function canVaccinate(Virus weakened, VirusClass active).
- * A weakened virus can vaccinate an active virus if it is up to 2 steps from it in the hierachy.
+ * A weakened virus can vaccinate an active virus if it is up to 4 steps from it in the hierachy.
  *
  * You can use the getStepCount function with both prototype chains to get the distance, e.g.
- * getStepCount([Virus, DNAVirus, B19], [Virus, RNAVirus, Zika]) === 4
+ * getStepCount([Virus, DNAVirus, Parvoviridae, B19], [Virus, RNAVirus, Flaviviridae, Zika]) === 6
  */
 
 function getStepCount(arr1, arr2) {
