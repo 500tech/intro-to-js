@@ -7,7 +7,11 @@
  * Implement one such user:
  */
 
-const user = {};
+const user = {
+  username: 'foo',
+  email: 'foo@bar.com',
+  accountBalance: 500,
+};
 
 function deriveActivityStatus(user) {
   return user.accountBalance > 1000;
@@ -19,7 +23,14 @@ function deriveActivityStatus(user) {
  * and all other user properties.
  */
 
-const enrichedUser = {};
+function enrichUser(user) {
+  return {
+    ...user,
+    isActive: deriveActivityStatus(user),
+  };
+}
+
+const enrichedUser = enrichUser(user);
 
 // Please don't change this :)
 console.log(user.name === enrichedUser.name);

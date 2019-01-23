@@ -7,6 +7,9 @@
  * greater('stranger'); // should print "Hello, stranger!"
  */
 
-function createGreater() {}
+function createGreater(greeting) {
+  return name => console.log(`${greeting}, ${name}!`);
+}
 
 // test the function by using it to print "Well done, you!"
+createGreater('Well done')('you');

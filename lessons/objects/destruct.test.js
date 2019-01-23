@@ -46,7 +46,22 @@ module.exports = function destructTest(object) {
    *
    * If no "line2" was provided, the address line changes to "westwish st (unspecified)"
    */
-  function formatUser() {}
+  function formatUser({
+    id,
+    email,
+    personalInfo: {
+      name,
+      address: { line1, line2 = 'unspecified', city, state },
+    },
+  }) {
+    return `
+    User ${id} (${email})
+    ${name}
+    ${line1} (${line2}),
+    ${city},
+    ${state}
+    `;
+  }
 
   console.log(trimAllLines(formatUser(object)));
 };
