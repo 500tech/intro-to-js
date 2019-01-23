@@ -63,7 +63,7 @@ class HepitisC extends Flaviviridae {}
 class Zika extends Flaviviridae {}
 
 function canVaccinate(weakened, active) {
-  return getStepCount(getChain(weakened), getChain(active));
+  return getStepCount(getChain(weakened), getChain(active)) <= 4;
 }
 
 console.log(canVaccinate(new B19(), Smallpox)); // true
