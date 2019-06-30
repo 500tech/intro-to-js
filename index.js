@@ -2,7 +2,7 @@ const cluster = require('cluster');
 const globby = require('globby');
 const eventToPromise = require('event-to-promise');
 const { prompt } = require('enquirer');
-const { spawn } = require('child_process');
+const spawn = require('cross-spawn');
 
 const LESSONS_DIR = './lessons/';
 

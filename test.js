@@ -101,5 +101,5 @@ async function test(testName) {
   );
 }
 
-const [lesson] = process.argv.slice(2);
+const lesson = process.argv.slice(2).join(' ');
 test(lesson);
