@@ -62,12 +62,24 @@ const ASYNC = {
   },
 };
 
+const ADVANCED = {
+  'advanced/generators':
+    'W1swXSxbMV0sWzFdLFsyXSxbM10sWzVdLFs4XSxbMTNdLFsyMV0sWzM0XV0=',
+  'advanced/data-structures': {
+    input: [0, 2, 0, 2, 1, 1, 1, 1, 5, 0, 3, 8],
+    output: 'W1swLDNdLFsxLDRdLFsyLDJdLFszLDFdLFs1LDFdLFs4LDFdXQ==',
+  },
+  'advanced/iterators':
+    'W1sxMDBdLFsxMDFdLFsxMDJdLFsxMDNdLFswXSxbMV0sWzJdLFszXSxbNF0sWzVdXQ==',
+};
+
 const TEST_RESULTS = {
   ...BASICS,
   ...FUNCTIONS,
   ...OBJECTS,
   ...CLASSES,
   ...ASYNC,
+  ...ADVANCED,
 };
 
 async function test(testName) {
@@ -77,28 +89,40 @@ async function test(testName) {
     log(...args);
     prints.push(args);
   };
-  const mod = require(`./lessons/${testName}.test`);
-  if (typeof mod === 'function') {
-    try {
-      await mod(get(TEST_RESULTS, `${testName}.input`));
-    } catch {}
+  try {
+    const mod = require(`./lessons/${testName}.test`);
+    const test = testName.split(' ').pop();
+    if (typeof mod === 'function') {
+      try {
+        await mod(get(TEST_RESULTS, `${test}.input`));
+      } catch {}
+    }
+    console.log = log;
+    const output = get(TEST_RESULTS, `${test}.input`)
+      ? get(TEST_RESULTS, `${test}.output`, [])
+      : TEST_RESULTS[test];
+    const expected =
+      Array.isArray(output) || !output ? output : JSON.parse(decode(output));
+    const result = isEqual(prints, expected)
+      ? chalk.greenBright("YEAH! you're awesome!")
+      : chalk.red('NOPE try again :)');
+    console.log(
+      [
+        '======================================',
+        result,
+        '======================================',
+      ].join('\n')
+    );
+  } catch (err) {
+    console.error(err);
+    console.log(
+      [
+        '======================================',
+        chalk.red('NOPE try again :)'),
+        '======================================',
+      ].join('\n')
+    );
   }
-  console.log = log;
-  const output = get(TEST_RESULTS, `${testName}.input`)
-    ? get(TEST_RESULTS, `${testName}.output`, [])
-    : TEST_RESULTS[testName];
-  const expected =
-    Array.isArray(output) || !output ? output : JSON.parse(decode(output));
-  const result = isEqual(prints, expected)
-    ? chalk.greenBright("YEAH! you'r awesome!")
-    : chalk.red('NOPE try again :)');
-  console.log(
-    [
-      '======================================',
-      result,
-      '======================================',
-    ].join('\n')
-  );
 }
 
 const lesson = process.argv.slice(2).join(' ');
