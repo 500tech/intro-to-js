@@ -65,7 +65,7 @@ async function startLesson() {
       mods[mod].push(lesson.split('.'));
       return mods;
     }, {});
-  const activeModule = await chooseModule(Object.keys(modules));
+  const activeModule = await chooseModule(Object.keys(modules).sort());
   const [lesson, test] = await chooseLesson(modules[activeModule]);
   return {
     path: `${activeModule}/${lesson}`,
@@ -73,18 +73,23 @@ async function startLesson() {
   };
 }
 
-async function master() {
+async function master(options = {}) {
+  const { code } = options;
   const selector = cluster.fork();
   const { lesson } = await eventToPromise(selector, 'message');
   if (lesson) {
-    spawnVSC(`${LESSONS_DIR}${lesson.path}${lesson.isTest ? '.test' : ''}.js`);
+    if (code) {
+      spawnVSC(
+        `${LESSONS_DIR}${lesson.path}${lesson.isTest ? '.test' : ''}.js`
+      );
+    }
     const app = spawnNodemon(
       lesson.isTest ? 'test.js' : 'lesson.js',
       lesson.path
     );
     await eventToPromise(process, 'SIGINT');
     app.kill();
-    return master();
+    return master(options);
   }
 }
 
@@ -96,7 +101,13 @@ function child() {
 }
 
 if (cluster.isMaster) {
-  master();
+  const { code } = require('yargs').options({
+    code: {
+      describe: 'Use with VSCode',
+      type: 'boolean',
+    },
+  }).argv;
+  master({ code });
 } else {
   child();
 }
