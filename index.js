@@ -6,6 +6,13 @@ const spawn = require('cross-spawn');
 
 const LESSONS_DIR = './lessons/';
 
+function spawnNodemonOnWindows(file, ...args) {
+  return spawn('npx.cmd', ['nodemon', file, ...args], {
+    detached: true,
+    shell: true,
+  });
+}
+
 function spawnNodemon(file, ...args) {
   return spawn('npx', ['nodemon', file, ...args], {
     detached: true,
@@ -83,10 +90,10 @@ async function master(options = {}) {
         `${LESSONS_DIR}${lesson.path}${lesson.isTest ? '.test' : ''}.js`
       );
     }
-    const app = spawnNodemon(
-      lesson.isTest ? 'test.js' : 'lesson.js',
-      lesson.path
-    );
+    const nodemon = process.platform.startsWith('win')
+      ? spawnNodemonOnWindows
+      : spawnNodemon;
+    const app = nodemon(lesson.isTest ? 'test.js' : 'lesson.js', lesson.path);
     await eventToPromise(process, 'SIGINT');
     app.kill();
     return master(options);
