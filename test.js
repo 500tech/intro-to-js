@@ -71,6 +71,9 @@ const ADVANCED = {
   },
   'advanced/iterators':
     'W1sxMDBdLFsxMDFdLFsxMDJdLFsxMDNdLFswXSxbMV0sWzJdLFszXSxbNF0sWzVdXQ==',
+  'advanced/properties':
+    'W1tbImEiLCJiIiwiYyJdXSxbeyJhIjo1LCJiIjo3NiwiZCI6bnVsbH1dXQ==',
+  'advanced/proxy': 'W1siQWRkZWQgcHJvcGVydHkgZm9vIHdpdGggdmFsdWUgNTUiXSxbIkFkZGVkIHByb3BlcnR5IGJhciB3aXRoIHZhbHVlIDU1Il0sWyJVcGRhdGVkIHByb3BlcnR5IGZvbyBmcm9tIDU1IHRvIDMiXSxbIkRlbGV0ZWQgcHJvcGVydHkgZm9vIl1d',
 };
 
 const TEST_RESULTS = {
