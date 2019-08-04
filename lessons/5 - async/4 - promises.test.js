@@ -4,7 +4,16 @@
 module.exports = () =>
   new Promise(resolve => {
     function asAsync(cb) {
-      // implement this
+      return (...args) =>
+        new Promise((resolve, reject) => {
+          setTimeout(() => {
+            try {
+              resolve(cb(...args));
+            } catch (e) {
+              reject(e);
+            }
+          }, 3000);
+        });
     }
 
     const add = asAsync((x, y) => x + y);

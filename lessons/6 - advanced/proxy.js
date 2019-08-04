@@ -4,7 +4,7 @@
  */
 
 const myObject = {
-  a: 'foo',
+  a: 'foo'
 };
 
 const myProxiedObject = new Proxy(myObject, {
@@ -25,7 +25,7 @@ const myProxiedObject = new Proxy(myObject, {
     console.log(`Trying to delete: .${property}`);
     delete original[property];
     return true;
-  },
+  }
 });
 
 console.log(myProxiedObject.a);

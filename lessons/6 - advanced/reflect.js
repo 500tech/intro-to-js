@@ -6,7 +6,7 @@
 
 const user = {
   id: 0,
-  username: 'foo',
+  username: 'foo'
 };
 
 console.log(Reflect.get(user, 'username')); // -> user.username
@@ -34,8 +34,8 @@ Object.defineProperties(user, {
   isPublic: {
     get() {
       return !Reflect.has(this, 'password');
-    },
-  },
+    }
+  }
 });
 
 console.log(user.isPublic);

@@ -20,7 +20,7 @@ Basic operators apply: + - / %
 
 console.log(4 / 6);
 
-// What happens if we use operators on non-nmbers?
+// What happens if we use operators on non-numbers?
 console.log(true + false + '2');
 
 /*
@@ -30,7 +30,7 @@ any -> string?
 */
 
 // We can explicitly cast into ints and floats:
-const two = parseInt('2');
+const two = parseInt('21');
 console.log(two === 2);
 
 // Math is a global utility:

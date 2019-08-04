@@ -9,7 +9,7 @@ const LESSONS_DIR = './lessons/';
 function spawnNodemonOnWindows(file, ...args) {
   return spawn('npx.cmd', ['nodemon', file, ...args], {
     detached: true,
-    shell: true,
+    shell: true
   });
 }
 
@@ -17,7 +17,7 @@ function spawnNodemon(file, ...args) {
   return spawn('npx', ['nodemon', file, ...args], {
     detached: true,
     shell: true,
-    stdio: ['inherit', 'inherit', 'inherit', 'ipc'],
+    stdio: ['inherit', 'inherit', 'inherit', 'ipc']
   });
 }
 
@@ -35,9 +35,9 @@ async function chooseModule(modules) {
       choices: modules.map(m => ({
         name: m,
         message: m,
-        value: m,
-      })),
-    },
+        value: m
+      }))
+    }
   ];
   const { moduleName } = await prompt(questions);
   return moduleName;
@@ -50,12 +50,12 @@ async function chooseLesson(lessons) {
       name: 'lesson',
       message: 'Select lesson',
       initial: 0,
-      choices: lessons.map(([lesson, test]) => ({
+      choices: lessons.sort().map(([lesson, test]) => ({
         name: test ? `${lesson}.${test}` : lesson,
         message: lesson + (test ? ' [TEST]' : ''),
-        value: test ? `${lesson}.${test}` : lesson,
-      })),
-    },
+        value: test ? `${lesson}.${test}` : lesson
+      }))
+    }
   ];
   const { lesson } = await prompt(questions);
   return lesson.split('.');
@@ -76,7 +76,7 @@ async function startLesson() {
   const [lesson, test] = await chooseLesson(modules[activeModule]);
   return {
     path: `${activeModule}/${lesson}`,
-    isTest: !!test,
+    isTest: !!test
   };
 }
 
@@ -111,8 +111,8 @@ if (cluster.isMaster) {
   const { code } = require('yargs').options({
     code: {
       describe: 'Use with VSCode',
-      type: 'boolean',
-    },
+      type: 'boolean'
+    }
   }).argv;
   master({ code });
 } else {

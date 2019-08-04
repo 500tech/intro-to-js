@@ -4,10 +4,11 @@ keptPromise
   .then(value => console.log(`Value: ${value}`))
   .then(value => console.log(`Next value is: ${value}`));
 
-const rejectedPromise = Promise.reject(5);
+const rejectedPromise = Promise.reject(6);
 rejectedPromise
   .then(value => console.log(`Value: ${value}`))
   .then(value => console.log(`Next value is: ${value}`))
+  .catch(value => console.log(`Rejected with value: ${value}`))
   .catch(value => console.log(`Rejected with value: ${value}`))
   .then(() => console.log('And now it is no longer rejected'));
 

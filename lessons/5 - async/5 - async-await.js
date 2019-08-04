@@ -5,7 +5,7 @@ const sleep = timeToSleep =>
   new Promise(resolve => setTimeout(resolve, timeToSleep));
 
 const serverState = {
-  posts: {},
+  posts: {}
 };
 
 function promisesNamespace() {
@@ -23,7 +23,7 @@ function promisesNamespace() {
     const { id = size(serverState.posts) } = post;
     const p = {
       id,
-      ...post,
+      ...post
     };
     serverState.posts[id] = p;
     return poorMansDeepClone(p);
@@ -36,7 +36,7 @@ function promisesNamespace() {
         console.log(post, savedPost);
         return savePostToServer({
           ...savedPost,
-          title: null,
+          title: null
         });
       })
       .catch(e => console.error(e))
@@ -64,7 +64,7 @@ function asyncAwaitNamespace() {
     const { id = size(serverState.posts) } = post;
     const p = {
       id,
-      ...post,
+      ...post
     };
     serverState.posts[id] = p;
     return poorMansDeepClone(p);
@@ -77,7 +77,7 @@ function asyncAwaitNamespace() {
     try {
       await savePostToServer({
         ...savedPost,
-        title: null,
+        title: null
       });
     } catch (e) {
       console.error(e);
@@ -88,5 +88,5 @@ function asyncAwaitNamespace() {
   return main();
 }
 
-promisesNamespace();
-// asyncAwaitNamespace(); // uncomment this line to test async-await
+// promisesNamespace();
+asyncAwaitNamespace(); // uncomment this line to test async-await

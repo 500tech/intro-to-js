@@ -13,7 +13,7 @@ const updatedProperty = (name, value, oldValue) => ({
   type: UPDATED,
   name,
   value,
-  oldValue,
+  oldValue
 });
 const deletedProperty = name => ({ type: DELETED, name });
 
@@ -31,9 +31,7 @@ const obj = observeObject({}, change => {
     }
     case UPDATED: {
       return console.log(
-        `Updated property ${change.name} from ${change.oldValue} to ${
-          change.value
-        }`
+        `Updated property ${change.name} from ${change.oldValue} to ${change.value}`
       );
     }
     case DELETED: {

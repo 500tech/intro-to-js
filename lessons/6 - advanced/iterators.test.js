@@ -15,8 +15,7 @@ function* first(iterator, n) {
  */
 
 class Counter {
-  reset() {
-  }
+  reset() {}
 }
 
 const counter = new Counter();

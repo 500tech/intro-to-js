@@ -6,8 +6,8 @@ C#'s Console.WriteLine()
 */
 
 // Log your name
-console.log('Alon');
+console.log('Ron');
 
 // Log your name, and your favourite number
 // https://imgs.xkcd.com/comics/random_number.png
-console.log('Alon', 4);
+console.log('Ron', 4);

@@ -6,6 +6,17 @@
   "scripts": {
     "start": "node index.js"
   },
+  "prettier": {
+    "printWidth": 80,
+    "tabWidth": 2,
+    "useTabs": false,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "none",
+    "bracketSpacing": true,
+    "jsxBracketSameLine": true,
+    "requirePragma": false
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/500tech/intro-to-js.git"
@@ -26,6 +37,7 @@
     "globby": "^9.0.0",
     "lodash": "^4.17.11",
     "nodemon": "^1.18.9",
+    "prettier": "^1.18.2",
     "yargs": "^13.2.4"
   }
 }

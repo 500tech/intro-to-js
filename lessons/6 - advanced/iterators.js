@@ -49,7 +49,7 @@ users.insert({ username: 'Foo' });
 users.insert({ username: 'Bar' });
 const resources = db.createTable('resources');
 resources.insert({
-  expires: Date.now(),
+  expires: Date.now()
 });
 
 for (let table of db) {

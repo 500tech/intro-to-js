@@ -47,9 +47,9 @@ function* createLogger() {
 }
 
 const logger = createLogger();
-logger.next() // This runs all code up to the first "yield"
-logger.next("First line");
-logger.next("Second line");
+logger.next(); // This runs all code up to the first "yield"
+logger.next('First line');
+logger.next('Second line');
 
 /**
  * Coroutines are quite complex, but they can enable awesome behavior!

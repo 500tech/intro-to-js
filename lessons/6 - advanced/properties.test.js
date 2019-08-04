@@ -11,7 +11,7 @@ function enhanceObject(object) {
 const object = enhanceObject({
   a: 5,
   b: 76,
-  c: 32,
+  c: 32
 });
 
 console.log(object.$$keys); // ['a', 'b', 'c']

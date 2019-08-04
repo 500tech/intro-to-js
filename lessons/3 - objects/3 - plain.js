@@ -1,5 +1,5 @@
 const plainObject = {
-  a: 4,
+  a: 4
 };
 
 console.log(plainObject, plainObject.a, plainObject['a']);
@@ -15,7 +15,7 @@ const bar = true;
 
 const objectWithComputedProperties = {
   ['hello' + 'World']: 'foo',
-  bar,
+  bar
 };
 
 console.log(objectWithComputedProperties.helloWorld);
@@ -23,7 +23,7 @@ console.log(objectWithComputedProperties.helloWorld);
 const withMethods = {
   printHello(name = 'stranger') {
     console.log(`Hello, ${name}!`);
-  },
+  }
 };
 
 withMethods.printHello('meow');

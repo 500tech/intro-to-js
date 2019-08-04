@@ -20,9 +20,9 @@ const deeply = {
   nested: {
     object: {
       props: [],
-      foo: 'bar',
-    },
-  },
+      foo: 'bar'
+    }
+  }
 };
 
 console.log(deeply, JSON.stringify(deeply)); // JSON.parse parses JSON encoded strings
@@ -30,18 +30,18 @@ console.log(deeply, JSON.stringify(deeply)); // JSON.parse parses JSON encoded s
 const { nested } = deeply;
 const { nested: nestedWithAnotherName } = deeply;
 const {
-  nested: { object },
+  nested: { object }
 } = deeply;
 const {
-  nested: { nonExisting = 5 },
+  nested: { nonExisting = 5 }
 } = deeply;
 const {
   nested: {
     object: {
       props: [firstValue = 0],
-      foo,
-    },
-  },
+      foo
+    }
+  }
 } = deeply;
 
 console.log({
@@ -50,5 +50,5 @@ console.log({
   object,
   nonExisting,
   firstValue,
-  foo,
+  foo
 });

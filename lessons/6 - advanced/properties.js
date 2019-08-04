@@ -14,15 +14,15 @@ Object.defineProperties(obj, {
     set(value) {
       foo = value;
       return true; // If a setter actually succeeds, you should return a truthy value
-    },
+    }
   },
   staticValue: {
-    value: 3,
+    value: 3
   },
   countsAsProperKey: {
     enumerable: true,
-    value: 'Meow',
-  },
+    value: 'Meow'
+  }
 });
 
 console.log(obj.foo);

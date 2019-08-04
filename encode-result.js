@@ -35,5 +35,5 @@ pipeline([
   process.stdin,
   transformBy(str => JSON.stringify(eval(str))),
   transformBy(str => encode(str) + '\n'),
-  process.stdout,
+  process.stdout
 ]);
