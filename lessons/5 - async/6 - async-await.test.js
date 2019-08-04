@@ -3,11 +3,19 @@ const posts = require('./posts.json'); // please disregard this line :)
 /**
  * From this point on, please refactor to use as many promises (or better, async functions) :)
  */
-const sleep = time => new Promise(resolve => setTimeout(resolve, time));
-const asAsync = cb => async (...args) => {
-  await sleep(Math.round(Math.random() * 300));
-  return cb(...args);
-};
+const sleep = (time, cb) => setTimeout(cb, time);
+const asAsync = cb => (...args) =>
+  sleep(Math.round(Math.random() * 300), () => {
+    const onDone = args.pop();
+    let error = null;
+    let value = null;
+    try {
+      value = cb(...args);
+    } catch (e) {
+      error = e;
+    }
+    onDone(error, value);
+  });
 
 const db = {
   __data: {
@@ -41,39 +49,68 @@ const connectToDatabase = asAsync(function connectToDatabaseSync(passwd) {
   throw new Error('Could not connect to database');
 });
 
-async function complexDbLogic(dbPassword) {
-  const db = await connectToDatabase(dbPassword);
-  const [resultsFromFirstTen, resultsFromLastTen] = await Promise.all([
-    db.select({
-      select: ['id', 'title'],
-      from: 'posts',
-      where: ({ id }) => id < 10
-    }),
-    db.select({
-      select: ['id', 'title'],
-      from: 'posts',
-      where: ({ id }) => id > 90
-    })
-  ]);
-  const [{ title }] = resultsFromFirstTen
-    .concat(resultsFromLastTen)
-    .sort(({ title: t1 }, { title: t2 }) =>
-      t1.length > t2.length ? -1 : t1.length < t2.length ? 1 : 0
+function complexDbLogic(dbPassword, onDone) {
+  connectToDatabase(dbPassword, (err, db) => {
+    if (err) {
+      return onDone(err);
+    }
+    db.select(
+      { select: ['id', 'title'], from: 'posts', where: ({ id }) => id < 10 },
+      (err, resultsFromFirstTen) => {
+        if (err) {
+          return onDone(err);
+        }
+        db.select(
+          {
+            select: ['id', 'title'],
+            from: 'posts',
+            where: ({ id }) => id > 90
+          },
+          (err, resultsFromLastTen) => {
+            if (err) {
+              return onDone(err);
+            }
+            const results = resultsFromFirstTen.concat(resultsFromLastTen);
+            results.sort(({ title: t1 }, { title: t2 }) =>
+              t1.length > t2.length ? -1 : t1.length < t2.length ? 1 : 0
+            );
+            const [{ title }] = results;
+            db.update(
+              { set: { title }, from: 'posts', where: ({ id }) => id < 10 },
+              err => {
+                if (err) {
+                  return onDone(err);
+                }
+                db.select(
+                  {
+                    select: ['id', 'title'],
+                    from: 'posts',
+                    where: ({ id }) => id < 10
+                  },
+                  (err, results) => {
+                    if (err) {
+                      return onDone(err);
+                    }
+                    onDone(null, results);
+                  }
+                );
+              }
+            );
+          }
+        );
+      }
     );
-  await db.update({
-    set: { title },
-    from: 'posts',
-    where: ({ id }) => id < 10
   });
-  const results = await db.select({
-    select: ['id', 'title'],
-    from: 'posts',
-    where: ({ id }) => id < 10
-  });
-  return results;
 }
 
 module.exports = () =>
-  complexDbLogic('foobar')
-    .then(console.log)
-    .catch(console.error);
+  new Promise(resolve =>
+    complexDbLogic('foobar', (err, results) => {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log(results);
+      }
+      resolve();
+    })
+  );

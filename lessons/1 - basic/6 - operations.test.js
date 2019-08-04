@@ -1,15 +1,13 @@
 // Log the reminder of the division 534234 by 71
-console.log(534234 % 71);
+console.log();
 // Construct the email of this user and log it:
 const username = 'FooBar';
 const emailProvider = 'gmail';
 const dnsSuffix = 'com';
-
-const email = `${username}@${emailProvider}.${dnsSuffix}`
-console.log(email);
+console.log();
 
 // Log a lower case version of the email:
-console.log(email.toLowerCase());
+console.log();
 
 // Log the different lines of this text (excluding the empty ones)
 const lorem = `
@@ -22,4 +20,4 @@ Mauris aliquet, felis in vulputate interdum, metus tellus posuere erat,
 at laoreet metus risus sed leo. Integer tempor ex purus.
 Sed in tincidunt urna. Morbi id mattis tortor.
 `;
-console.log(lorem.trim().split('\n'));
+console.log();

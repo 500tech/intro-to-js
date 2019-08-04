@@ -22,8 +22,4 @@ const input = [
 ];
 
 // print the (sum) of the (square) of all the (odd/uneven) numbers in the input
-const result = input
-  .filter(num => num % 2 === 1)
-  .map(num => num * num)
-  .reduce((acc, curr) => (acc += curr), 0);
-console.log(result);
+console.log();

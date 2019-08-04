@@ -4,18 +4,7 @@
  * The class should have a getter "adoptable" that is true if the pet is fixed and vaccinated.
  */
 
-class Pet {
-  constructor(owner, petId) {
-    this.owner = owner;
-    this.petId = petId;
-    this.vaccinated = false;
-    this.fixed = false;
-  }
-
-  get adoptable() {
-    return this.fixed && this.vaccinated;
-  }
-} // replace this with the class
+function Pet() {} // replace this with the class
 
 const p = new Pet('Mr. Foobar', 1441);
 console.log(p.owner);

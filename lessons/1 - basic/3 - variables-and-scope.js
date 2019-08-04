@@ -40,7 +40,6 @@ function someFunction() {
 
 // The simplest way to create a block scope is with curly braces
 {
-	// local scope
   const scopedConst = 'i have block scope: const';
   let scopedLet = 'i also have block scope: let';
   console.log({ globalVariable, scopedConst, scopedLet });

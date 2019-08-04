@@ -5,8 +5,6 @@
 
 function call(context, fn, ...args) {
   // Implement this
-  // fn.bind(context)(...args)
-  return fn.bind(context, ...args)();
 }
 
 class Person {
@@ -29,9 +27,7 @@ call(p, greet, 'Hello'); // Should print "Hello, I am Jacob Jacobson."
  * The function should override the context properties with bound versions of the methods.
  */
 function bindAll(context, methods) {
-  for (let method of methods) {
-    context[method] = context[method].bind(context);
-  }
+  // Implement this
 }
 
 class PersonEx extends Person {
