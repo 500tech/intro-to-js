@@ -10,3 +10,18 @@
 function createGreater() {}
 
 // test the function by using it to print "Well done, you!"
+
+/**
+ * Implement a function that caches results
+ *
+ * e.g.
+ * const memoSum = memo((a, b) => a + b);
+ * memoSum(1, 2)
+ */
+
+function memo(fn) {
+}
+
+const memoSum = memo((a, b) => a + b);
+console.log(memoSum(1,3));
+console.log(memoSum(1,3));
