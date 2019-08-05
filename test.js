@@ -14,8 +14,8 @@ const BASICS = {
 const FUNCTIONS = {
   'classic': 'W1s3XSxbMjBdXQ==',
   'arrow': 'W1s3XSxbMjBdXQ==',
-  'closure': 'W1siV2VsbCBkb25lLCB5b3UhIl1d'
-};
+  'closure': [['Well done, you!'], ['non-memoized result'], [4], ['memoized-result'], [4]]
+}
 
 const OBJECTS = {
   'arrays': 'W1s0Mzk2OF1d',

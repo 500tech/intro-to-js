@@ -25,7 +25,7 @@ console.log(greeter('you'));
  * memoSum(1, 2)
  */
 
-/*function memo(fn) {
+function memo(fn) {
 	const cache = {};
 
 	return function(...args) {
@@ -43,4 +43,4 @@ console.log(greeter('you'));
 
 const memoSum = memo((a, b) => a + b);
 console.log(memoSum(1,3));
-console.log(memoSum(1,3));*/
+console.log(memoSum(1,3));
