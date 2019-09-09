@@ -1,7 +1,10 @@
 const keptPromise = Promise.resolve(5);
 console.log(keptPromise);
 keptPromise
-  .then(value => console.log(`Value: ${value}`))
+  .then(value => {
+    console.log(`Value: ${value}`);
+    return 5;
+  })
   .then(value => console.log(`Next value is: ${value}`));
 
 const rejectedPromise = Promise.reject(5);
@@ -14,6 +17,11 @@ rejectedPromise
 const randomPromise = new Promise((resolve, reject) =>
   Math.random() > 0.5 ? resolve() : reject()
 );
+
+const p = new Promise(resolve => {
+  setTimeout(() => resolve(), 2000);
+});
+p.then(() => console.log('2 seconds passed'));
 
 randomPromise
   .then(() => console.log('Random promise resolved'))

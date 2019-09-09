@@ -1,12 +1,29 @@
+const log = require('../../logtrace');
+
 function printUsername({ username }) {
-  console.log(username);
+  log(username);
 }
 
-const user = { username: 'foo' };
+const user = {
+  username: 'foo',
+  address: {
+    city: 'Tel Aviv',
+  },
+  history: [],
+  email: '',
+  height: 140,
+};
 printUsername(user);
 
+const { username, age = 40, ...otherDetails } = user;
+
+log(username, age);
+log(otherDetails);
+
 const [first, ...tail] = [1, 2, 3, 4, 5];
-console.log(first, tail);
+log(first, tail);
+const [,,fst,,moo] = [1, 2, 3, 4, 5];
+log(fst, moo);
 
 // let's implement array's find:
 function find(array, predicate) {
@@ -14,7 +31,7 @@ function find(array, predicate) {
   return result;
 }
 
-console.log(find([1, 2, 3, 4], x => x % 2 === 0));
+log(find([1, 2, 3, 4], x => x % 2 === 0));
 
 const deeply = {
   nested: {
@@ -25,7 +42,7 @@ const deeply = {
   },
 };
 
-console.log(deeply, JSON.stringify(deeply)); // JSON.parse parses JSON encoded strings
+log(deeply, JSON.stringify(deeply)); // JSON.parse parses JSON encoded strings
 
 const { nested } = deeply;
 const { nested: nestedWithAnotherName } = deeply;
@@ -44,7 +61,7 @@ const {
   },
 } = deeply;
 
-console.log({
+log({
   nested,
   nestedWithAnotherName,
   object,

@@ -10,11 +10,15 @@ for (let item of arr) {
 
 // similar to:
 
-const loop = arr.forEach(item => console.log(item));
+const loop = arr.forEach(console.log);
 
 console.log(loop); // notice that .forEach returns undefined
 
-const evenNumbers = arr.filter(n => n % 2 === 0);
+const evenNumbers = arr.filter((item, index, array) => {
+  console.log(item, index, array);
+  // array.pop();
+  return item % 2 === 0;
+});
 console.log(evenNumbers, arr); // filter returns a new array
 
 /**
@@ -40,17 +44,25 @@ const countOfEvenNumbers = arr.reduce((count, n) => {
 }, 0);
 console.log(countOfEvenNumbers);
 
-const runningAverage = arr.reduce((currentAvg, n) => (currentAvg + n) / 2);
+const nums = ['2', '3', '4'];
+console.log(nums.map(parseInt));
+
+const runningAverage = arr.reduce((currentAvg, n) => (currentAvg + n) / 2, 0);
 console.log(runningAverage);
+const product = arr.reduce((prod, item) => prod * item, 1);
+console.log(product);
 
 /**
  * Shallow copying:
  * .slice(startIndex=0, length=.length) returns a new sub-array.
  */
 
-const shallow = arr.slice();
+const shallow = arr.slice(0, 2);
 console.log(arr, shallow, arr === shallow);
 
 // Or, you can use the spread (...) operator
-const spread = [...arr];
+const spread = [-2, ...arr, 6];
 console.log(arr, spread, arr === spread);
+
+arr.shift()
+console.log(arr);

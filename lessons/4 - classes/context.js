@@ -1,6 +1,7 @@
 class User {
   constructor(name) {
     this.name = name;
+    this.isLetterInName = this.isLetterInName.bind(this);
   }
 
   greet() {
@@ -8,29 +9,30 @@ class User {
   }
 
   isLetterInName(letter) {
-    function isLetterInName() {
+    const isLetterInName = () => {
       return this.name.includes(letter);
-    }
-    return isLetterInName(letter);
+    };
+    return isLetterInName();
   }
 }
 
 const u = new User('Foo');
 u.greet();
-const greet = u.greet;
-console.log(typeof greet);
-try {
-  greet();
-} catch (e) {
-  console.log('Oh no, an error!');
-  console.error(e);
-}
+// const greet = u.greet;
+// console.log(typeof greet);
+// try {
+//   greet();
+// } catch (e) {
+//   console.log('Oh no, an error!');
+//   console.error(e);
+// }
 
 const boundGreet = u.greet.bind(u);
 boundGreet();
-u.greet.bind({ name: 'none of your business' })();
+u.greet.apply({ name: 'none of your business' }, ['hello']);
 try {
-  console.log(u.isLetterInName('o'));
+  const { isLetterInName } = u;
+  console.log(isLetterInName('o'));
 } catch (e) {
   console.log('Oh no, an error!');
   console.error(e);

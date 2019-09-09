@@ -2,6 +2,11 @@ const a = 'hello';
 const b = 'hello';
 const c = `${b}`;
 
+const username = 'admin';
+const company = 'wework';
+const email = `${username}@${company}.com`;
+console.log(email);
+
 console.log('Strings:', a === b, b === c);
 
 const d = 1;

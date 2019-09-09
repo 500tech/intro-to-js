@@ -17,17 +17,28 @@ function asAsync(cb) {
 const add = asAsync((x, y) => x + y);
 
 module.exports = () =>
-  new Promise(resolve => { // Please ignore this line...
+  new Promise(resolve => {
+    // Please ignore this line...
     // Implement a function that accepts an array of [asyncFunction, ...args] and a callback
     // which will be called with all (ordered) errors and values.
     function onAllDone(calls, cb) {
-      // Implement this
+      let counter = calls.length;
+      const errors = [];
+      const values = [];
+      calls.forEach(([fn, ...args], index) => {
+        fn(...args, (err, value) => {
+          values[index] = value;
+          errors[index] = err;
+          counter--;
+          if (!counter) {
+            cb(errors, values);
+          }
+        });
+      });
     }
 
     onAllDone([[add, 1, 2], [add, 5, 8], [add, 99, -20]], (_errors, values) => {
       console.log(values); // Should print [3, 13, 79]
       resolve();
     });
-
-    setTimeout(resolve, 1500); // Delete this when you're done :)
   });

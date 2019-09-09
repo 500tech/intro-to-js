@@ -30,8 +30,8 @@ any -> string?
 */
 
 // We can explicitly cast into ints and floats:
-const two = parseInt('2');
-console.log(two === 2);
+const two = parseInt('deadbeef', 16);
+console.log(two === 2, two, +('2'));
 
 // Math is a global utility:
 console.log(Math.floor(5.4));

@@ -28,10 +28,15 @@ class User {
   }
 }
 
+User.prototype.getFirstName = function() {
+  return this.firstName;
+};
+
 const user = new User('Bobby', 'Tables');
 user.greet();
 user.name = 'Foo Bar';
 user.greet();
+console.log(user.getFirstName());
 
 console.log(user, `${user}`);
 console.log(
@@ -40,3 +45,12 @@ console.log(
   "lastName": "Spam"
 }`)
 );
+
+const myPrototype = {
+  meow: function() {
+    return 5;
+  },
+};
+
+const o = Object.create(myPrototype);
+console.log(o.meow());
