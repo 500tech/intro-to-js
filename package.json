@@ -19,13 +19,13 @@
   "devDependencies": {},
   "dependencies": {
     "base-64": "^0.1.0",
-    "chalk": "^2.4.2",
-    "cross-spawn": "^6.0.5",
-    "enquirer": "^2.3.0",
+    "chalk": "^3.0.0",
+    "cross-spawn": "^7.0.1",
+    "enquirer": "^2.3.2",
     "event-to-promise": "^0.8.0",
-    "globby": "^9.0.0",
-    "lodash": "^4.17.11",
-    "nodemon": "^1.18.9",
-    "yargs": "^13.2.4"
+    "globby": "^10.0.1",
+    "lodash": "^4.17.15",
+    "nodemon": "^2.0.2",
+    "yargs": "^15.0.2"
   }
 }
