@@ -24,7 +24,7 @@
     "enquirer": "^2.3.2",
     "event-to-promise": "^0.8.0",
     "globby": "^10.0.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "nodemon": "^2.0.2",
     "yargs": "^15.0.2"
   }
